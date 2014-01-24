@@ -1,27 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <cybox:Observables 
-	xmlns:FileObj="http://cybox.mitre.org/objects#FileObject-2"
 	xmlns:cyboxCommon="http://cybox.mitre.org/common-2"
+	xmlns:cybox="http://cybox.mitre.org/cybox-2"
 	xmlns:cyboxVocabs="http://cybox.mitre.org/default_vocabularies-2"
 	xmlns:AddressObj="http://cybox.mitre.org/objects#AddressObject-2"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:cybox="http://cybox.mitre.org/cybox-2"
-	xmlns:email_to_cybox="http://www.github.com/CybOXProject/Tools/"
-	xmlns:URIObj="http://cybox.mitre.org/objects#URIObject-2"
 	xmlns:EmailMessageObj="http://cybox.mitre.org/objects#EmailMessageObject-2"
-	xsi:schemaLocation="http://cybox.mitre.org/objects#FileObject-2 http://cybox.mitre.org/XMLSchema/objects/File/2.0.1/File_Object.xsd http://cybox.mitre.org/common-2 http://cybox.mitre.org/XMLSchema/common/2.0.1/cybox_common.xsd http://cybox.mitre.org/default_vocabularies-2 http://cybox.mitre.org/XMLSchema/default_vocabularies/2.0.1/cybox_default_vocabularies.xsd http://cybox.mitre.org/objects#AddressObject-2 http://cybox.mitre.org/XMLSchema/objects/Address/2.0.1/Address_Object.xsd http://cybox.mitre.org/cybox-2 http://cybox.mitre.org/XMLSchema/core/2.0.1/cybox_core.xsd http://cybox.mitre.org/objects#URIObject-2 http://cybox.mitre.org/XMLSchema/objects/URI/2.0.1/URI_Object.xsd http://cybox.mitre.org/objects#EmailMessageObject-2 http://cybox.mitre.org/XMLSchema/objects/Email_Message/2.0.1/Email_Message_Object.xsd" cybox_major_version="2" cybox_minor_version="0" cybox_update_version="1">
+	xmlns:FileObj="http://cybox.mitre.org/objects#FileObject-2"
+	xmlns:URIObj="http://cybox.mitre.org/objects#URIObject-2"
+	xmlns:email_to_cybox="http://www.github.com/CybOXProject/Tools/"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://cybox.mitre.org/common-2 http://cybox.mitre.org/XMLSchema/common/2.1/cybox_common.xsd http://cybox.mitre.org/cybox-2 http://cybox.mitre.org/XMLSchema/core/2.1/cybox_core.xsd http://cybox.mitre.org/default_vocabularies-2 http://cybox.mitre.org/XMLSchema/default_vocabularies/2.1/cybox_default_vocabularies.xsd http://cybox.mitre.org/objects#AddressObject-2 http://cybox.mitre.org/XMLSchema/objects/Address/2.1/Address_Object.xsd http://cybox.mitre.org/objects#EmailMessageObject-2 http://cybox.mitre.org/XMLSchema/objects/Email_Message/2.1/Email_Message_Object.xsd http://cybox.mitre.org/objects#FileObject-2 http://cybox.mitre.org/XMLSchema/objects/File/2.1/File_Object.xsd http://cybox.mitre.org/objects#URIObject-2 http://cybox.mitre.org/XMLSchema/objects/URI/2.1/URI_Object.xsd" cybox_major_version="2" cybox_minor_version="1" cybox_update_version="0">
     <cybox:Observable_Package_Source>
         <cyboxCommon:Tools>
             <cyboxCommon:Tool>
                 <cyboxCommon:Name>email_to_cybox.py</cyboxCommon:Name>
                 <cyboxCommon:Description>Email to CybOX conversion script</cyboxCommon:Description>
                 <cyboxCommon:Vendor>The MITRE Corporation</cyboxCommon:Vendor>
-                <cyboxCommon:Version>2.0.1</cyboxCommon:Version>
+                <cyboxCommon:Version>2.1.0</cyboxCommon:Version>
             </cyboxCommon:Tool>
         </cyboxCommon:Tools>
     </cybox:Observable_Package_Source>
-    <cybox:Observable id="email_to_cybox:Observable-0bc59ef7-d92f-47b9-8cea-a94a0835ef81">
-        <cybox:Object id="email_to_cybox:EmailMessage-9ef16cea-2b75-47c2-bd8c-7036148fad35">
+    <cybox:Observable id="email_to_cybox:Observable-15942eb1-9b96-4389-be86-b6b6eabaf35f">
+        <cybox:Object id="email_to_cybox:EmailMessage-1df98156-9e55-4a1c-9fce-79b705d6d035">
             <cybox:Properties xsi:type="EmailMessageObj:EmailMessageObjectType">
                 <EmailMessageObj:Header>
                     <EmailMessageObj:Received_Lines>
@@ -114,16 +114,16 @@ From: Jon Doe &lt;jdoe@yahoo.com&gt;
 To: Robert Smith &lt;rsmith@megacorp.com&gt;
 Content-Type: multipart/mixed; boundary=14dae934080712a51504c4f7b772]]></EmailMessageObj:Raw_Header>
                 <EmailMessageObj:Attachments>
-                    <EmailMessageObj:File object_reference="email_to_cybox:File-c7f0c907-8b70-4525-8174-cf11c1763edd"/>
+                    <EmailMessageObj:File object_reference="email_to_cybox:File-05d6d188-913b-438e-a1d0-62529587be5a"/>
                 </EmailMessageObj:Attachments>
                 <EmailMessageObj:Links>
-                    <EmailMessageObj:Link object_reference="email_to_cybox:URI-b08085eb-32e1-4c69-9fef-e301e16aed76"/>
+                    <EmailMessageObj:Link object_reference="email_to_cybox:URI-2761bbe6-cd69-4a23-8ec2-03801282d059"/>
                 </EmailMessageObj:Links>
             </cybox:Properties>
         </cybox:Object>
     </cybox:Observable>
-    <cybox:Observable id="email_to_cybox:Observable-4319bb08-6fb5-4317-a5c2-b44c7d9aaf8e">
-        <cybox:Object id="email_to_cybox:File-c7f0c907-8b70-4525-8174-cf11c1763edd">
+    <cybox:Observable id="email_to_cybox:Observable-0cf6cb28-7527-482c-9601-65c429ae30a4">
+        <cybox:Object id="email_to_cybox:File-05d6d188-913b-438e-a1d0-62529587be5a">
             <cybox:Properties xsi:type="FileObj:FileObjectType">
                 <FileObj:File_Name>Analysis.exe.pdf</FileObj:File_Name>
                 <FileObj:File_Extension>.pdf</FileObj:File_Extension>
@@ -136,34 +136,34 @@ Content-Type: multipart/mixed; boundary=14dae934080712a51504c4f7b772]]></EmailMe
                 </FileObj:Hashes>
             </cybox:Properties>
             <cybox:Related_Objects>
-                <cybox:Related_Object idref="email_to_cybox:EmailMessage-9ef16cea-2b75-47c2-bd8c-7036148fad35">
+                <cybox:Related_Object idref="email_to_cybox:EmailMessage-1df98156-9e55-4a1c-9fce-79b705d6d035">
                     <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.0">Contained_Within</cybox:Relationship>
                 </cybox:Related_Object>
             </cybox:Related_Objects>
         </cybox:Object>
     </cybox:Observable>
-    <cybox:Observable id="email_to_cybox:Observable-c39dc98f-0b08-455d-9562-29b5ec29bc35">
-        <cybox:Object id="email_to_cybox:URI-b08085eb-32e1-4c69-9fef-e301e16aed76">
+    <cybox:Observable id="email_to_cybox:Observable-732fbd98-531e-4cb8-a172-e72d0db601c4">
+        <cybox:Object id="email_to_cybox:URI-2761bbe6-cd69-4a23-8ec2-03801282d059">
             <cybox:Properties xsi:type="URIObj:URIObjectType">
                 <URIObj:Value>http://www.consultingservize.net/archives/Analysis.pdf</URIObj:Value>
             </cybox:Properties>
             <cybox:Related_Objects>
-                <cybox:Related_Object idref="email_to_cybox:URI-e08f2ddf-89b5-4ed5-b7a8-a5dc10620e37">
+                <cybox:Related_Object idref="email_to_cybox:URI-f1b92c77-5ae6-4e6d-9745-604740aa15ca">
                     <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.0">Contains</cybox:Relationship>
                 </cybox:Related_Object>
             </cybox:Related_Objects>
         </cybox:Object>
     </cybox:Observable>
-    <cybox:Observable id="email_to_cybox:Observable-cd61afef-e246-4b79-b857-404111d74ac3">
-        <cybox:Object id="email_to_cybox:URI-e08f2ddf-89b5-4ed5-b7a8-a5dc10620e37">
+    <cybox:Observable id="email_to_cybox:Observable-9ee01fe7-5cce-44cf-a270-bb04e5395ae7">
+        <cybox:Object id="email_to_cybox:URI-f1b92c77-5ae6-4e6d-9745-604740aa15ca">
             <cybox:Properties xsi:type="URIObj:URIObjectType">
                 <URIObj:Value>consultingservize.net</URIObj:Value>
             </cybox:Properties>
             <cybox:Related_Objects>
-                <cybox:Related_Object idref="email_to_cybox:URI-b08085eb-32e1-4c69-9fef-e301e16aed76">
+                <cybox:Related_Object idref="email_to_cybox:URI-2761bbe6-cd69-4a23-8ec2-03801282d059">
                     <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.0">Extracted_From</cybox:Relationship>
                 </cybox:Related_Object>
-                <cybox:Related_Object idref="email_to_cybox:URI-b08085eb-32e1-4c69-9fef-e301e16aed76">
+                <cybox:Related_Object idref="email_to_cybox:URI-2761bbe6-cd69-4a23-8ec2-03801282d059">
                     <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.0">FQDN_Of</cybox:Relationship>
                 </cybox:Related_Object>
             </cybox:Related_Objects>

@@ -1,19 +1,19 @@
 #!\usr\bin\env python
 
-# Copyright (c) 2013, The MITRE Corporation. All rights reserved.
+# Copyright (c) 2014, The MITRE Corporation. All rights reserved.
 # See LICENSE.txt for complete terms.
 
 """
 Converts raw email to CybOX representation
 
-Email to CybOX v2.0.1 Translator
-2013 - Bryan Worrell & Greg Back - The MITRE Corporation
+Email to CybOX v2.1.0 Translator
+Bryan Worrell & Greg Back - The MITRE Corporation
 
 Requires python-cybox
 """
 
 # Script version
-__version__ = '2.0.1'
+__version__ = '2.1.0'
 
 # Standard Library imports
 import argparse
