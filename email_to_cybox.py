@@ -740,8 +740,11 @@ class EmailParser:
 
         Keys: 'message', 'files', 'urls'
         """
-
-        message = EmailMessage()
+        
+        files       = []
+        url_list    = []
+        domain_list = []
+        message     = EmailMessage()
 
         # Headers are required (for now)
         message.header = self.__create_cybox_headers(msg)
@@ -895,8 +898,7 @@ def main():
 
     if args.input == "-":
         input_data = sys.stdin
-    else:
-        #TODO: make sure this gets closed
+    else: 
         input_data = open(args.input, 'r')
 
     NAMESERVER = args.use_dns_server
@@ -924,12 +926,14 @@ def main():
 
     try:
         observables = translator.generate_cybox_from_email_file(input_data)
-        print "<?xml version='1.0' encoding='UTF-8'?>"
-        #print "<!DOCTYPE doc [<!ENTITY comma '&#44;'>]>"
+        print "<?xml version='1.0' encoding='UTF-8'?>" 
         print observables.to_xml()
     except Exception, err:
         sys.stderr.write('\n!! error: %s\n' % str(err))
         traceback.print_exc(file=sys.stderr)
+    finally:
+        if args.input != "-":
+            input_data.close()
 
     if(VERBOSE_OUTPUT):
         sys.stderr.write("** processing completed\n")
