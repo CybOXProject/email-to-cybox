@@ -51,9 +51,6 @@ from cybox.objects.whois_object import (WhoisContact, WhoisContacts,
         WhoisStatuses)
 import cybox.utils
 
-NS = cybox.utils.Namespace("http://www.github.com/CybOXProject/Tools/",
-                           "email_to_cybox")
-cybox.utils.set_id_namespace(NS)
 
 
 __all__ = ["EmailParser"]
@@ -94,6 +91,7 @@ class EmailParser:
         self.include_url_objects = True
         self.include_domain_objects = True
 
+        self.namespace = "email_to_cybox"
         self.dns = False
         self.whois = False
         self.http_whois = False
@@ -182,7 +180,7 @@ class EmailParser:
             record = whois.whois(domain)
         except Exception, e:
             sys.stderr.write('The whois lookup for the domain: ' + domain + ' failed for the following reason:\n\n')
-            sys.stderr.write(e + "\n")
+            sys.stderr.write(str(e) + "\n")
             return None
 
         return self.__convert_whois_record(record)
@@ -225,20 +223,20 @@ class EmailParser:
 
         #these dates can be datetimes or arrays of datetimes, not sure why
         if response.creation_date:
-            if response.creation_date is list:
-                record['creation_date'] = self.__get_xml_date_fmt(whois.parser.cast_date(response.creation_date[0]))
+            if response.creation_date.__class__.__name__ == 'list':
+                record['creation_date'] = self.__get_xml_date_fmt(response.creation_date[0].timetuple())
             else:
                 record['creation_date'] = self.__get_xml_date_fmt(response.creation_date.timetuple())
 
         if response.updated_date:
-            if response.updated_date is list:
-                record['updated_date'] = self.__get_xml_date_fmt(whois.parser.cast_date(response.updated_date[0]))
+            if response.updated_date.__class__.__name__ == 'list':
+                record['updated_date'] = self.__get_xml_date_fmt(response.updated_date[0].timetuple())
             else:
                 record['updated_date'] = self.__get_xml_date_fmt(response.updated_date.timetuple())
 
         if response.expiration_date:
-            if response.expiration_date is list:
-                record['expiration_date'] = self.__get_xml_date_fmt(whois.parser.cast_date(response.expiration_date[0]))
+            if response.expiration_date.__class__.__name__ == 'list':
+                record['expiration_date'] = self.__get_xml_date_fmt(response.expiration_date[0].timetuple())
             else:
                 record['expiration_date'] = self.__get_xml_date_fmt(response.expiration_date.timetuple())
         return record
@@ -280,25 +278,39 @@ class EmailParser:
                     # if it's an attachment-type, pull out the filename
                     # and calculate the size in bytes
 
-                    file_name = part.get_filename()
+                    file_name = part.get_filename(failobj='')
                     file_data = part.get_payload(decode=True)
 
-                    f = File()
-                    f.file_name = file_name
-                    f.size = len(file_data)
-                    f.file_extension = os.path.splitext(file_name)[1]
+                    #PGP Encrypted could come back as None and ''
+                    if file_name or file_data:
+                        f = File()
 
-                    #TODO: add support for created and modified dates
-                    #modified_date = self.__get_attachment_modified_date(part)
-                    #created_date = self.__get_attachment_created_date(part)
+                        #Do what we can with what came back from the payload parsing
+                        if file_name:
+                            f.file_name = file_name
+                            f.file_extension = os.path.splitext(file_name)[1]
 
-                    if self.__verbose_output:
-                        sys.stderr.write("** creating file object for: %s, size: %d bytes\n" % (f.file_name, f.size))
+                        if file_data:
+                            f.size = len(file_data)
+                            md5_hash = hashlib.md5(file_data).hexdigest()
+                            f.add_hash(md5_hash)
 
-                    md5_hash = hashlib.md5(file_data).hexdigest()
-                    f.add_hash(md5_hash)
+                            hashes = []
+                            hashes.append(hashlib.md5(file_data).hexdigest())
+                            hashes.append(hashlib.sha1(file_data).hexdigest())
+                            hashes.append(hashlib.sha256(file_data).hexdigest())
+                            hashes.append(hashlib.sha384(file_data).hexdigest())
 
-                    files.append(f)
+                            for hash in hashes:
+                                f.add_hash(hash)
+
+                        files.append(f)
+                        #TODO: add support for created and modified dates
+                        #modified_date = self.__get_attachment_modified_date(part)
+                        #created_date = self.__get_attachment_created_date(part)
+
+                        if self.__verbose_output:
+                            sys.stderr.write("** creating file object for: %s, size: %d bytes\n" % (f.file_name, f.size))
 
         return files
 
@@ -377,6 +389,8 @@ class EmailParser:
             headers.received_lines = self._parse_received_headers(msg)
         if 'to' in self.headers:
             headers.to = _get_email_recipients(msg['to'])
+            if msg['delivered-to'] and not headers.to:
+                headers.to = _get_email_recipients(msg['delivered-to'])
         if 'cc' in self.headers:
             headers.cc = _get_email_recipients(msg['cc'])
         if 'bcc' in self.headers:
@@ -413,7 +427,14 @@ class EmailParser:
             headers.x_originating_ip = Address(msg['x-originating-ip'],
                                                Address.CAT_IPV4)
         if 'x-priority' in self.headers and 'x-priority' in msg:
-            headers.x_priority = String(msg['x-priority'])
+            #Must be a digit - pull one out of anything that could be a string such as 3 (Normal)
+            import re
+            priority = ''
+            for p in re.findall(r'\d+',msg['x-priority']):
+                if p.isdigit():
+                    priority = p
+            if priority:
+                headers.x_priority = String(priority)
 
         return headers
 
@@ -519,8 +540,8 @@ class EmailParser:
             return None
 
         dns_record = DNSRecord()
-        dns_record.domain_name = self.__create_domain_name_object(record.get('Domain_Name'))
-        dns_record.ip_address = self.__create_ip_address_object(record.get('IP_Address'))
+        dns_record.domain_name = self.__create_domain_name_object(str(record.get('Domain_Name')))
+        dns_record.ip_address = self.__create_ip_address_object(str(record.get('IP_Address')))
         dns_record.entry_type = String(record.get('Entry_Type'))
         dns_record.flags = HexBinary(record.get('Flags'))
         dns_record.record_data = record.get('Record_Data')
@@ -885,8 +906,12 @@ def main():
             help="attempt to perform a dns lookup for domains within the "
                 "email and create a DNS record object")
 
+    parser.add_argument('--ns',
+            help="use a custom QName namespace. default is email_to_cybox ")
+
     parser.add_argument('--use-dns-server', metavar="DNS-SERVER",
             help=' use this DNS server for DNS lookup of domains')
+
     parser.add_argument('--headers',
             help="comma-separated list of header fields to be included in the "
                  "in the CybOX EmailMessage output. DO NOT INCLUDE SPACES. "
@@ -898,7 +923,7 @@ def main():
 
     if args.input == "-":
         input_data = sys.stdin
-    else: 
+    else:
         input_data = open(args.input, 'r')
 
     NAMESERVER = args.use_dns_server
@@ -921,8 +946,12 @@ def main():
     translator.include_domain_objects = not args.exclude_domain_objs
 
     translator.dns = args.dns
+    translator.namespace = args.ns if args.ns else "email_to_cybox"
     translator.whois = args.whois
     translator.http_whois = args.http_whois
+
+    NS = cybox.utils.Namespace("http://www.github.com/CybOXProject/Tools/", translator.namespace)
+    cybox.utils.set_id_namespace(NS)
 
     try:
         observables = translator.generate_cybox_from_email_file(input_data)
