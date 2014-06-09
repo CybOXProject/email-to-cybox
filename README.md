@@ -68,6 +68,7 @@ Usage
       --exclude-raw-headers
                             exclude raw headers from email message object
       --exclude-urls        do not attempt to parse urls from input
+      --ns                  the namespace of the QName used for ID's and IDREF's
       --exclude-domain-objs
                             do not create URI domain objects for found URLS
       --exclude-url-objs    do not create URI objects for found URLs
