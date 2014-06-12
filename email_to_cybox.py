@@ -292,8 +292,6 @@ class EmailParser:
 
                         if file_data:
                             f.size = len(file_data)
-                            md5_hash = hashlib.md5(file_data).hexdigest()
-                            f.add_hash(md5_hash)
 
                             hashes = []
                             hashes.append(hashlib.md5(file_data).hexdigest())
