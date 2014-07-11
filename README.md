@@ -25,7 +25,7 @@ Installation
 
 Download and extract the included files into your directory of choice. 
 
-OpenIOC-to-CybOX requires Python 2.X. It was developed using Python 2.7, and may work 
+Email-to-CybOX requires Python 2.X. It was developed using Python 2.7, and may work 
 under Python 2.6. It is not compatible with Python 3.
 
 ### Dependencies 
