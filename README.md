@@ -4,7 +4,7 @@ Generate CybOX XML from an RFC 822 email
 
 **Version**: 2.1.0
 
-    Copyright (c) 2014 - The MITRE Corporation
+    Copyright (c) 2015 - The MITRE Corporation
     All rights reserved. See LICENSE.txt for more details.
 
     BY USING THIS PROGRAM, YOU SIGNIFY YOUR ACCEPTANCE OF THE TERMS AND CONDITIONS
