@@ -361,7 +361,7 @@ class EmailParser:
         """
         rlinelist = ReceivedLineList()
 
-        for line in msg.get_all("received"):
+        for line in msg.get_all("received", []):
             rline = ReceivedLine()
 
             (line, rline.timestamp) = _try_rsplit(line, ';')
