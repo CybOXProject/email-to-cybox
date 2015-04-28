@@ -6,14 +6,14 @@
 """
 Converts raw email to CybOX representation
 
-Email to CybOX v2.1.0 Translator
+Email to CybOX v2.2.0 Translator
 Bryan Worrell & Greg Back - The MITRE Corporation
 
 Requires python-cybox
 """
 
 # Script version
-__version__ = '2.1.0'
+__version__ = '2.2.0'
 
 # Standard Library imports
 import argparse
