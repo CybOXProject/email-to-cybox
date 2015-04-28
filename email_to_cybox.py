@@ -384,7 +384,9 @@ class EmailParser:
         headers = EmailHeader()
 
         if 'received' in self.headers:
-            headers.received_lines = self._parse_received_headers(msg)
+            lines = self._parse_received_headers(msg)
+            if lines:
+                headers.received_lines = lines
         if 'to' in self.headers:
             headers.to = _get_email_recipients(msg['to'])
             if msg['delivered-to'] and not headers.to:
@@ -399,29 +401,29 @@ class EmailParser:
             headers.sender = _get_single_email_address(msg['sender'])
         if 'reply-to' in self.headers:
             headers.reply_to = _get_single_email_address(msg['reply-to'])
-        if 'subject' in self.headers:
+        if 'subject' in self.headers and 'subject' in msg:
             headers.subject = String(msg['subject'])
-        if 'in-reply-to' in self.headers:
+        if 'in-reply-to' in self.headers and 'in-reply-to' in msg:
             headers.in_reply_to = String(msg['in-reply-to'])
-        if 'errors-to' in self.headers:
+        if 'errors-to' in self.headers and 'errors-to' in msg:
             headers.errors_to = String(msg['errors-to'])
-        if 'date' in self.headers:
+        if 'date' in self.headers and 'date' in msg:
             headers.date = DateTime(msg['date'])
-        if 'message-id' in self.headers:
+        if 'message-id' in self.headers and 'message-id' in msg:
             headers.message_id = String(msg['message-id'])
-        if 'boundary' in self.headers:
+        if 'boundary' in self.headers and 'boundary' in msg:
             headers.boundary = String(msg['boundary'])
-        if 'content-type' in self.headers:
+        if 'content-type' in self.headers and 'content-type' in msg:
             headers.content_type = String(msg['content-type'])
-        if 'mime-version' in self.headers:
+        if 'mime-version' in self.headers and 'mime-version' in msg:
             headers.mime_version = String(msg['mime-version'])
-        if 'precedence' in self.headers:
+        if 'precedence' in self.headers and 'precedence' in msg:
             headers.precedence = String(msg['precedence'])
-        if 'user-agent' in self.headers:
+        if 'user-agent' in self.headers and 'user-agent' in msg:
             headers.user_agent = String(msg['user-agent'])
-        if 'x-mailer' in self.headers:
+        if 'x-mailer' in self.headers and 'x-mailer' in msg:
             headers.x_mailer = String(msg['x-mailer'])
-        if 'x-originating-ip' in self.headers:
+        if 'x-originating-ip' in self.headers and msg['x-originating-ip']:
             headers.x_originating_ip = Address(msg['x-originating-ip'],
                                                Address.CAT_IPV4)
         if 'x-priority' in self.headers and 'x-priority' in msg:
