@@ -59,18 +59,10 @@
                         <AddressObj:Address_Value>jdoe@yahoo.com</AddressObj:Address_Value>
                     </EmailMessageObj:From>
                     <EmailMessageObj:Subject>Complete Analysis</EmailMessageObj:Subject>
-                    <EmailMessageObj:In_Reply_To>None</EmailMessageObj:In_Reply_To>
                     <EmailMessageObj:Date>2012-07-16T15:48:34-04:00</EmailMessageObj:Date>
                     <EmailMessageObj:Message_ID>&lt;CAF=+=fBGC1ivgFkbi7jvxRBxH_h_OQnERPNiJQjTWO6HDjNbqg@foo.yahoo.com&gt;</EmailMessageObj:Message_ID>
-                    <EmailMessageObj:Errors_To>None</EmailMessageObj:Errors_To>
-                    <EmailMessageObj:Boundary>None</EmailMessageObj:Boundary>
                     <EmailMessageObj:Content_Type>multipart/mixed; boundary=14dae934080712a51504c4f7b772</EmailMessageObj:Content_Type>
                     <EmailMessageObj:MIME_Version>1.0</EmailMessageObj:MIME_Version>
-                    <EmailMessageObj:Precedence>None</EmailMessageObj:Precedence>
-                    <EmailMessageObj:User_Agent>None</EmailMessageObj:User_Agent>
-                    <EmailMessageObj:X_Mailer>None</EmailMessageObj:X_Mailer>
-                    <EmailMessageObj:X_Originating_IP xsi:type="AddressObj:AddressObjectType" category="ipv4-addr">
-                    </EmailMessageObj:X_Originating_IP>
                 </EmailMessageObj:Header>
                 <EmailMessageObj:Raw_Body><![CDATA[Attached is the summary for the analysis that you requested. This is
 CONFIDENTIAL so do not share with anyone outside the group. The full
@@ -82,8 +74,8 @@ Jonathan Doe
 Senior Analyst
 Consulting Services, LLC
 
-Attached is the summary for the analysis that you requested. This is CONFIDENTIAL so do not share with anyone outside the group. The full summary can be found here:&lt;div&gt;&lt;a href="http://www.consultingservize.net/archives/Analysis.pdf"&gt;http://www.consultingservize.net/archives/Analysis.pdf&lt;/a&gt;.&lt;/div&gt;
-&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Regards,&lt;/div&gt;&lt;div&gt;Jonathan Doe&lt;/div&gt;&lt;div&gt;Senior Analyst&lt;/div&gt;&lt;div&gt;Consulting Services, LLC&lt;/div&gt;]]></EmailMessageObj:Raw_Body>
+Attached is the summary for the analysis that you requested. This is CONFIDENTIAL so do not share with anyone outside the group. The full summary can be found here:<div><a href="http://www.consultingservize.net/archives/Analysis.pdf">http://www.consultingservize.net/archives/Analysis.pdf</a>.</div>
+<div><br></div><div>Regards,</div><div>Jonathan Doe</div><div>Senior Analyst</div><div>Consulting Services, LLC</div>]]></EmailMessageObj:Raw_Body>
                 <EmailMessageObj:Raw_Header><![CDATA[Delivered-To: rsmith@megacorp.com
 Received: by 10.64.32.72 with SMTP id g8csp132763iei;
         Mon, 16 Jul 2012 12:48:37 -0700 (PDT)
@@ -108,10 +100,10 @@ Received: by 10.20.30.40 with SMTP id e6mr6123235ign.55.1342468114261; Mon,
  16 Jul 2012 12:48:34 -0700 (PDT)
 Received: by 10.43.79.137 with HTTP; Mon, 16 Jul 2012 12:48:34 -0700 (PDT)
 Date: Mon, 16 Jul 2012 15:48:34 -0400
-Message-ID: &lt;CAF=+=fBGC1ivgFkbi7jvxRBxH_h_OQnERPNiJQjTWO6HDjNbqg@foo.yahoo.com&gt;
+Message-ID: <CAF=+=fBGC1ivgFkbi7jvxRBxH_h_OQnERPNiJQjTWO6HDjNbqg@foo.yahoo.com>
 Subject: Complete Analysis
-From: Jon Doe &lt;jdoe@yahoo.com&gt;
-To: Robert Smith &lt;rsmith@megacorp.com&gt;
+From: Jon Doe <jdoe@yahoo.com>
+To: Robert Smith <rsmith@megacorp.com>
 Content-Type: multipart/mixed; boundary=14dae934080712a51504c4f7b772]]></EmailMessageObj:Raw_Header>
                 <EmailMessageObj:Attachments>
                     <EmailMessageObj:File object_reference="email_to_cybox:File-05d6d188-913b-438e-a1d0-62529587be5a"/>
@@ -133,11 +125,23 @@ Content-Type: multipart/mixed; boundary=14dae934080712a51504c4f7b772]]></EmailMe
                         <cyboxCommon:Type xsi:type="cyboxVocabs:HashNameVocab-1.0">MD5</cyboxCommon:Type>
                         <cyboxCommon:Simple_Hash_Value>51444701d484acc8768860e5c0eeb981</cyboxCommon:Simple_Hash_Value>
                     </cyboxCommon:Hash>
+                    <cyboxCommon:Hash>
+                        <cyboxCommon:Type xsi:type="cyboxVocabs:HashNameVocab-1.0">SHA1</cyboxCommon:Type>
+                        <cyboxCommon:Simple_Hash_Value>98eb73b2156d62ccbcb5d4fd1e78973c882aac13</cyboxCommon:Simple_Hash_Value>
+                    </cyboxCommon:Hash>
+                    <cyboxCommon:Hash>
+                        <cyboxCommon:Type xsi:type="cyboxVocabs:HashNameVocab-1.0">SHA256</cyboxCommon:Type>
+                        <cyboxCommon:Simple_Hash_Value>034b6ea67375cb465da8a9c18d76f5d7119bd8af0d7f0ac1db326da779ddf00e</cyboxCommon:Simple_Hash_Value>
+                    </cyboxCommon:Hash>
+                    <cyboxCommon:Hash>
+                        <cyboxCommon:Type xsi:type="cyboxVocabs:HashNameVocab-1.0">SHA384</cyboxCommon:Type>
+                        <cyboxCommon:Simple_Hash_Value>2c779f0d81b03c712422fce27c6679d194c5d17824bcfaa88519ab982b289e49bd49e11993ffa8c4142ce2ea8fe8575f</cyboxCommon:Simple_Hash_Value>
+                    </cyboxCommon:Hash>
                 </FileObj:Hashes>
             </cybox:Properties>
             <cybox:Related_Objects>
                 <cybox:Related_Object idref="email_to_cybox:EmailMessage-1df98156-9e55-4a1c-9fce-79b705d6d035">
-                    <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.0">Contained_Within</cybox:Relationship>
+                    <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.1">Contained_Within</cybox:Relationship>
                 </cybox:Related_Object>
             </cybox:Related_Objects>
         </cybox:Object>
@@ -149,7 +153,7 @@ Content-Type: multipart/mixed; boundary=14dae934080712a51504c4f7b772]]></EmailMe
             </cybox:Properties>
             <cybox:Related_Objects>
                 <cybox:Related_Object idref="email_to_cybox:URI-f1b92c77-5ae6-4e6d-9745-604740aa15ca">
-                    <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.0">Contains</cybox:Relationship>
+                    <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.1">Contains</cybox:Relationship>
                 </cybox:Related_Object>
             </cybox:Related_Objects>
         </cybox:Object>
@@ -161,13 +165,12 @@ Content-Type: multipart/mixed; boundary=14dae934080712a51504c4f7b772]]></EmailMe
             </cybox:Properties>
             <cybox:Related_Objects>
                 <cybox:Related_Object idref="email_to_cybox:URI-2761bbe6-cd69-4a23-8ec2-03801282d059">
-                    <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.0">Extracted_From</cybox:Relationship>
+                    <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.1">Extracted_From</cybox:Relationship>
                 </cybox:Related_Object>
                 <cybox:Related_Object idref="email_to_cybox:URI-2761bbe6-cd69-4a23-8ec2-03801282d059">
-                    <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.0">FQDN_Of</cybox:Relationship>
+                    <cybox:Relationship xsi:type="cyboxVocabs:ObjectRelationshipVocab-1.1">FQDN_Of</cybox:Relationship>
                 </cybox:Related_Object>
             </cybox:Related_Objects>
         </cybox:Object>
     </cybox:Observable>
 </cybox:Observables>
-
